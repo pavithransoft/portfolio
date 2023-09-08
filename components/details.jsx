@@ -10,7 +10,7 @@ const Details = () => {
   return (
     <div className="p-2">
       <div className="pt-10 font-semibold font-nunito">
-        <div className="px-1 sm:px-12 lg:px-32 relative">
+        <div className="px-2 sm:px-12 lg:px-32 relative">
           <span className="text-2xl sm:text-4xl grid grid-cols-2 w-fit text-blue-500">
             <h1 className="font-bold">
               Hai<span className="text-yellow-500 px-1">!</span>

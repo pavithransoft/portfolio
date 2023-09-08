@@ -59,7 +59,7 @@ const Login = () => {
         </span>
         <Link
           href={""}
-          className="absolute -top-16 -right-4 text-sm hover:border px-2 py-1 hover:bg-slate-100 rounded-md"
+          className="absolute -top-16 -right-2 text-sm hover:border px-2 py-1 hover:bg-slate-100 rounded-md"
         >
           Register
         </Link>
