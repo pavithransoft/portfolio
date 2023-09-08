@@ -6,16 +6,21 @@ import Details from "@/components/details";
 import Layout from "@/components/form/layout";
 import Login from "@/components/form/login";
 import Register from "@/components/form/register";
+import Link from "next/link";
 
 export default function Home() {
-  const [isClicked, setIsClicked] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleTheme = () => {
     setIsClicked(!isClicked);
   };
 
   return (
-    <section className="min-h-screen">
+    <section
+      className={`min-h-screen ${
+        isClicked ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       <TopMenu onClicked={isClicked} onTheme={handleTheme} />
       <Details />
       <section className="px-1 py-5">

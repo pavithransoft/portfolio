@@ -6,8 +6,11 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import LoginToggle from "./LoginToggle";
 
 const Login = () => {
+  const [passwordType, eye] = LoginToggle();
+
   const schema = z.object({
     email: z
       .string()
@@ -69,7 +72,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Email"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
+            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black ${
               errors.email?.message ? "border-red-500" : ""
             }`}
             {...register("email")}
@@ -86,15 +89,17 @@ const Login = () => {
           )}
         </>
         <>
-          <input
-            type="text"
-            placeholder="Password"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
-              errors.password?.message ? "border-red-500" : ""
-            }`}
-            {...register("password")}
-          />
-
+          <div className="relative">
+            <input
+              type={passwordType}
+              placeholder="Password"
+              className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black w-full ${
+                errors.password?.message ? "border-red-500" : ""
+              }`}
+              {...register("password")}
+            />
+            {eye}
+          </div>
           {errors.password && (
             <span
               className={`relative text-xs -mt-3 mx-2 ${

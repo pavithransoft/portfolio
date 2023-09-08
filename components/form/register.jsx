@@ -1,12 +1,15 @@
 "use client";
 
-import { z, ZodType } from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import Link from "next/link";
+import RegisterToggle from "./RegisterToggle";
 
 const Register = () => {
+  const [passwordType, eye] = RegisterToggle();
+
   const schema = z
     .object({
       name: z.string().nonempty("Name is required").min(3).max(20),
@@ -79,7 +82,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Name"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
+            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black ${
               errors.name?.message ? "border-red-500" : ""
             }`}
             {...register("name")}
@@ -99,7 +102,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Email"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
+            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black ${
               errors.email?.message ? "border-red-500" : ""
             }`}
             {...register("email")}
@@ -115,14 +118,17 @@ const Register = () => {
           )}
         </>
         <>
-          <input
-            type="text"
-            placeholder="Password"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
-              errors.password?.message ? "border-red-500" : ""
-            }`}
-            {...register("password")}
-          />
+          <div className="relative">
+            <input
+              type={passwordType}
+              placeholder="Password"
+              className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black w-full ${
+                errors.password?.message ? "border-red-500" : ""
+              }`}
+              {...register("password")}
+            />
+            {eye}
+          </div>
           {errors.password && (
             <span
               className={`relative text-xs -mt-3 mx-2 ${
@@ -134,14 +140,17 @@ const Register = () => {
           )}
         </>
         <>
-          <input
-            type="text"
-            placeholder="Confirm Password"
-            className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm ${
-              errors.confirmPassword?.message ? "border-red-500" : ""
-            }`}
-            {...register("confirmPassword")}
-          />
+          <div className="relative">
+            <input
+              type={passwordType}
+              placeholder="Confirm Password"
+              className={`focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-gray-500 border p-2 rounded-md placeholder:text-sm text-black w-full ${
+                errors.confirmPassword?.message ? "border-red-500" : ""
+              }`}
+              {...register("confirmPassword")}
+            />
+            {eye}
+          </div>
           {errors.confirmPassword && (
             <span
               className={`relative text-xs -mt-3 mx-2 ${
